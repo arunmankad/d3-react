@@ -46,16 +46,28 @@ function ForceLayout({data, nodeHoverTooltip}){
 
         console.log("height - ",height)
 
-        const color = () => { return "#00C1D4"; };
+        const color = (d) => {
+            switch(d.type){
+                case 'product':
+                    return "#00AE7D";
+                case 'parameter':
+                    return "#ED8A3F";
+                case 'rule':
+                    return "#2ab7ca";
+                default:
+                    return "#00C1D4";
+            } 
+            return "#00C1D4"; 
+        };
 
         const icon = (d) => {
             switch (d.type){
                 case 'product':
                     return "\uf187";
-                case 'property':
+                case 'parameter':
                     return "\uf013";
                 case 'rule':
-                    return "\uf515";
+                    return "\uf121";
                 default:
                     return "\uf515";
             }
@@ -204,9 +216,7 @@ function ForceLayout({data, nodeHoverTooltip}){
 }    // end of draw method
     return(
         <div className="chart">
-            <p>ForecLayout</p>
             <div ref={ref} className={styles.container} >
-
             </div>
         </div>
     )
